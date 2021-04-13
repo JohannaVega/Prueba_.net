@@ -1,0 +1,93 @@
+﻿@model Ely_Yohanna_Vega.Models.db_datos.usuarios
+
+@{
+    ViewBag.Title = "Borar user";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--CONTEINER TODO-->
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col col-lg-12">
+            <h2>Eliminar usuario.</h2>
+            <br>
+            <hr>
+            <h3>¿Estás seguro que deseas borrar los datos del usuario?</h3>
+            <div>
+                <h4>Usuario PI.</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.nombres)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.nombres)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.apellidos)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.apellidos)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.identificacion)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.identificacion)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.celular)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.celular)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.direccion)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.direccion)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.cuidad)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.cuidad)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.correo)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.correo)
+                    </dd>
+
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions">
+                        <input type="submit" value="Delete" class="btn btn-danger" /> |
+                        @Html.ActionLink("Volver a la lista", "Index")
+                    </div>
+                }
+                <br>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
+<!--FIN CONTEINER TODO-->

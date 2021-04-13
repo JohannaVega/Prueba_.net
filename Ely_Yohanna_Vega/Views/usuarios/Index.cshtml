@@ -1,0 +1,123 @@
+﻿@model IEnumerable<Ely_Yohanna_Vega.Models.db_datos.usuarios>
+
+@{
+    ViewBag.Title = "Lista de usuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--SECCIÓN SCRIPT-->
+<script src="~/Content/FileSaver.js"></script>
+
+<script>
+    //FUNCIÓN EXPORTAR DATOS .XLS
+    function exportar_xls(id, name) {
+        var tab_text = '<html xmlns: x="urn:schemas-microsoft-com:office:excel">';
+        tab_text = tab_text + '<head><xml><x: ExcelWorkbook><x: ExcelWorksheets><x: ExcelWorksheet>';
+        tab_text = tab_text + '<x: Name>Test Sheet</x: Name>';
+        tab_text = tab_text + '<x: WorksheetOptions><x: Panes></x: Panes></x: WorksheetOptions ></x: ExcelWorksheet > ';
+        tab_text = tab_text + '</x:ExcelWorksheets></x:ExcelWorkbook></xml></head><body>';
+        tab_text = tab_text + "<table border='1px' style='color:black'>";
+
+
+        var exportTable = $('#' + id).clone();
+        exportTable.find('th').last().remove();
+        exportTable.find('input').each(function (index, elem) { $(elem).remove(); });
+        exportTable.find('a').each(function (index, elem) { $(elem).remove(); });
+
+        tab_text = tab_text + exportTable.html();
+        tab_text = tab_text + '</table></body></html>';
+        var fileName = "Usuarios_PI" + '.xls';
+
+        //Guardando archivo
+        var blob = new Blob([tab_text], { type: "application/vnd.ms-excel;charset=utf-8" })
+        window.saveAs(blob, fileName);
+    }
+    //FIN FUNCIÓN EXPORTAR DATOS .XLS
+</script>
+<!--FIN SECCIÓN SCRIPT-->
+<h2>Lista de usuarios.</h2>
+
+<p>
+    @Html.ActionLink("Insertar datos", "Create")
+</p>
+
+<!--CONTEINER TODO-->
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col col-lg-12">
+            <div aling="center">
+                <div aling="center" class="p-5">
+                    <button class="btn btn-primary" onclick="javascript: exportar_xls('tb_usuarios', 'usuarios')">
+                        Exportar tabla .xls
+                    </button>
+                </div>
+            </div>
+
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-12">
+                    <table id="tb_usuarios" class="table">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.nombres)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.apellidos)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.identificacion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.celular)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.direccion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.cuidad)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.correo)
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.nombres)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.apellidos)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.identificacion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.celular)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.direccion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.cuidad)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.correo)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Editar datos", "Edit", new { id = item.id_usuario }) |
+                                    @Html.ActionLink("Ver más", "Details", new { id = item.id_usuario }) |
+                                    @Html.ActionLink("Borrar usuario", "Delete", new { id = item.id_usuario })
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--FIN CONTEINER TODO-->

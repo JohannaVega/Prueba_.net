@@ -1,0 +1,85 @@
+﻿@model Ely_Yohanna_Vega.Models.db_datos.usuarios
+
+@{
+    ViewBag.Title = "Información user";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--CONTEINER TODO-->
+<div class="container">
+    <div class="row justify-content-md-center">
+        <h2>Información de usuario.</h2>
+        <br>
+        <hr>
+
+        <div>
+            <h4>Usuario PI.</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.nombres)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.nombres)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.apellidos)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.apellidos)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.identificacion)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.identificacion)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.celular)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.celular)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.direccion)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.direccion)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.cuidad)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.cuidad)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.correo)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.correo)
+                </dd>
+
+            </dl>
+        </div>
+        <br>
+        <hr>
+        <p>
+            @Html.ActionLink("Editar datos", "Edit", new { id = Model.id_usuario }) |
+            @Html.ActionLink("Volver a la lista", "Index")
+        </p>
+    </div>
+</div>
+<!--CONTEINER TODO-->

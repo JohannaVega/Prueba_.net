@@ -1,0 +1,66 @@
+﻿@model Ely_Yohanna_Vega.Models.FileViewModel
+
+@{
+    ViewBag.Title = "Ingresar usuarios";
+}
+
+<!--CONTEINER TODO-->
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col col-lg-12">
+            <h2>Registra los usuarios de PI</h2>
+            <label>Mediante un archivo .csv, podrás ingresar los datos de usuarios PI.</label>
+        </div>
+    </div>
+        <br>
+        <hr>
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-12">
+
+                @using (Html.BeginForm("Create", "usuarios", FormMethod.Post,
+                      new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form">
+                        <h4>Registra tus usuarios.</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="row">
+                            <div class="col-md-6 col-lg-offset-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.archivo);
+                                    @Html.TextBoxFor(model => model.archivo, new { type = "file"})
+                                    @Html.ValidationMessageFor(model => model.archivo, "", new { @class = "text-danger" })
+                                    <!--El validationMessage va a mostrar un mesnaje de error en caso de que haya-->
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div aling="center" class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Registrar" class="btn btn-lg btn-success" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+            <br>
+
+            <div class="col col-lg-12">
+                <div>
+                    @Html.ActionLink("Volver a la lista", "Index")
+                </div>
+
+                @section Scripts {
+                    @Scripts.Render("~/bundles/jqueryval")
+                }
+
+            </div>
+            <br>
+</div>
+   
+<!--FIN CONTEINER TODO-->
